@@ -2,12 +2,14 @@ package com.example.app.actividades;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
 
 import com.example.app.R;
+import com.example.app.clases.EnlaceMenu;
 
-public class PrincipalActivity extends AppCompatActivity {
+public class PrincipalActivity extends AppCompatActivity implements EnlaceMenu {
      // Definir datos
     TextView jbl_nombre;
 
@@ -23,4 +25,11 @@ public class PrincipalActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public void menu(int id_boton) {
+        Intent i_menu = new Intent(this,MenuActivity.class);
+        i_menu.putExtra("boton_clicked",id_boton);
+        startActivity(i_menu);
+
+    }
 }

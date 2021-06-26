@@ -6,4 +6,21 @@
     android:layout_height="match_parent"
     tools:context=".actividades.MenuActivity">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="15dp"
+        android:orientation="vertical">
+        <fragment
+            android:id="@+id/frg_menu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:name="com.example.app.fragmentos.MenuFragment"
+            tools:layout="@layout/fragment_menu"/>
+        <RelativeLayout
+            android:id="@+id/rl_menu"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+    </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

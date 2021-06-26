@@ -11,7 +11,7 @@
         android:orientation="horizontal"
         android:layout_margin="10dp">
         <ImageButton
-            android:id="@+id/ib_men_catalogo"
+            android:id="@+id/men_ib_catalogo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -19,7 +19,7 @@
             android:layout_weight="1"
             android:background="#0000"/>
         <ImageButton
-            android:id="@+id/ib_men_carrito"
+            android:id="@+id/men_ib_carrito"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -27,7 +27,7 @@
             android:layout_weight="1"
             android:background="#0000"/>
         <ImageButton
-            android:id="@+id/ib_men_historial"
+            android:id="@+id/men_ib_historial"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -35,7 +35,15 @@
             android:layout_weight="1"
             android:background="#0000"/>
         <ImageButton
-            android:id="@+id/ib_men_opciones"
+            android:id="@+id/men_ib_ubicanos"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:src="@drawable/ubicanos"
+            android:layout_weight="1"
+            android:background="#0000"/>
+        <ImageButton
+            android:id="@+id/men_ib_opciones"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
