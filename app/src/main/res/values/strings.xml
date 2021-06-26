@@ -12,5 +12,7 @@
     <string name="log_lbl_copyright">Derechos reservados 2021</string>
     // PRINCIPAL
     <string name="pri_lbl_nombre">Bienvenido</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>
