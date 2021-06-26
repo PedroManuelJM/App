@@ -1,3 +1,16 @@
 <resources>
     <string name="app_name">App</string>
+    //INICIO
+    <string name="ini_lbl_carga">Cargando...</string>
+    // LOGIN
+    <string name="log_txt_correo">Ingrese correo</string>
+    <string name="log_txt_clave">Ingrese clave</string>
+    <string name="log_chk_recordar">Recordar sesión</string>
+    <string name="log_btn_ingresar">Ingresar</string>
+    <string name="log_btn_salir">Salir</string>
+    <string name="log_lbl_registro">¡Registrate!</string>
+    <string name="log_lbl_copyright">Derechos reservados 2021</string>
+    // PRINCIPAL
+    <string name="pri_lbl_nombre">Bienvenido</string>
+
 </resources>
