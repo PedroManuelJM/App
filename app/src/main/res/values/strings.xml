@@ -12,6 +12,26 @@
     <string name="log_lbl_copyright">Derechos reservados 2021</string>
     // PRINCIPAL
     <string name="pri_lbl_nombre">Bienvenido</string>
+    // REGISTRO
+    <string name="reg_lbl_titulo">Nuevo Registro</string>
+    <string name="reg_txt_dni">Ingrese su DNI</string>
+    <string name="reg_txt_nombre">Ingrese su nombre</string>
+    <string name="reg_txt_apellidos">Ingrese sus apellidos</string>
+    <string name="reg_txt_fecha_nac">Ingrese su fecha nacimiento</string>
+    <string name="reg_rb_sin_definir">Sin definir</string>
+    <string name="reg_rb_masculino">Masculino</string>
+    <string name="reg_rb_femenino">Femenino</string>
+    <string name="reg_txt_correo">Ingrese su correo</string>
+    <string name="reg_txt_telefono">Ingrese su número telefónico</string>
+    <string name="reg_txt_direccion">Ingrese su dirección</string>
+    <string name="reg_txt_clave">Ingrese su clave</string>
+    <string name="reg_txt_confirmar_clave">Reingrese su clave</string>
+    <string name="reg_chk_terminos">Acepto los términos y condiciones</string>
+    <string name="reg_btn_registrar">Registrar</string>
+    <string name="reg_btn_cancelar">Cancelar</string>
+
+
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
