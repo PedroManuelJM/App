@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.example.app.R;
+import com.example.app.clases.Hash;
 import com.example.app.clases.InternaDB;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
@@ -76,9 +77,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         if (validar_usuario(s_correo,s_clave)) {
             if(jchk_recordar.isChecked()){
+                Hash hash=new Hash();
                 // si esta marcado la opcióon recordar sesión
                 InternaDB bd= new InternaDB(getApplicationContext()); // la bd
-                bd.agregar_usuario(s_correo,s_clave); // agregando el usuario a la BD
+                bd.agregar_usuario(s_correo,hash.StringToHash(s_clave,"SHA1")); // agregando el usuario a la BD
             }
 
             //cargamos la actividad de bienvenida
@@ -98,7 +100,14 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     private boolean validar_usuario(String s_correo, String s_clave) {
         //validacion a base de datos
         boolean b_valido=false;
-        if(s_correo.equals("usuario@mail.com")&& s_clave.equals("123456"))
+        Hash hash=new Hash();
+        InternaDB bd= new InternaDB(getApplicationContext()); // la bd
+       //
+        if(!bd.recordo_sesion()){
+            s_clave=hash.StringToHash(s_clave,"SHA1");
+        }
+
+        if(s_correo.equals("usuario@mail.com")&& s_clave.equals("7c4a8d09ca3762af61e59520943dc26494f8941b"))
             b_valido=true;
         return b_valido;
     }

@@ -1,5 +1,6 @@
 package com.example.app.fragmentos;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -7,15 +8,20 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.example.app.R;
+import com.example.app.actividades.LoginActivity;
+import com.example.app.clases.InternaDB;
 
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link OpcionesFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class OpcionesFragment extends Fragment {
+public class OpcionesFragment extends Fragment implements View.OnClickListener {
+
+    Button jbtn_cerrar_sesion;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -61,6 +67,26 @@ public class OpcionesFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_opciones, container, false);
+        View vista= inflater.inflate(R.layout.fragment_opciones, container, false);
+        jbtn_cerrar_sesion = vista.findViewById(R.id.opc_btn_cerrar_sesion);
+        jbtn_cerrar_sesion.setOnClickListener(this);
+        return vista;
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.opc_btn_cerrar_sesion:
+                cerrar_sesion();
+                break;
+        }
+    }
+
+    private void cerrar_sesion() {
+        // objeto de la db
+        InternaDB bd=new InternaDB(getContext());
+        bd.borrar_sesion();
+        Intent i_login=new Intent(getContext(), LoginActivity.class);
+        startActivity(i_login);
     }
 }

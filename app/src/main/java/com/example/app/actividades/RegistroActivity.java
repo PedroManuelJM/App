@@ -2,6 +2,7 @@ package com.example.app.actividades;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -9,6 +10,7 @@ import android.widget.Adapter;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -16,6 +18,8 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.app.R;
+
+import java.util.Calendar;
 
 public class RegistroActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -80,7 +84,28 @@ public class RegistroActivity extends AppCompatActivity implements View.OnClickL
 
 
     private void recoger_fecha_nacimiento() {
-        Toast.makeText(this,"Recoger fecha nacimiento", Toast.LENGTH_LONG).show();
+        final String CERO="0";
+        final String BARRA="/";
+        //CALENDARIO PARA OBTENER FECHA & HORA
+        final Calendar c= Calendar.getInstance();
+        // Variables para obtener la fecha
+        final int mes = c.get(Calendar.MONTH);
+        final int dia = c.get(Calendar.DAY_OF_MONTH);
+        final int anio = c.get(Calendar.YEAR);
+        //Toast.makeText(this,"Recoger fecha nacimiento", Toast.LENGTH_LONG).show();
+        DatePickerDialog recoger_fecha = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                final int mesActual = month +1;
+                // Formateo el dia obtenido: antepone el 0 si son menores de 10
+                String diaFormateado=(dayOfMonth < 10)? CERO + String.valueOf(dayOfMonth):String.valueOf(dayOfMonth);
+                // Formateo el dia obtenido: antepone el 0 si son menores de 10
+                String mesFormateado=(mesActual < 10)? CERO + String.valueOf(mesActual):String.valueOf(mesActual);
+                //Muestro la fecha con el formato deseado
+                jtxt_fecha_nac.setText(diaFormateado + BARRA + mesFormateado + BARRA + year);
+            }
+        },anio,mes,dia) ;
+         recoger_fecha.show();
     }
 
     private void aceptar_terminos() {

@@ -5,10 +5,18 @@
     android:layout_height="match_parent"
     tools:context=".fragmentos.OpcionesFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="fragmento opciones" />
-
+   <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
+       android:orientation="vertical"
+       android:gravity="center"
+       >
+       <Button
+           android:id="@+id/opc_btn_cerrar_sesion"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:textAllCaps="false"
+           android:text="@string/opc_btn_cerrar_sesion"
+           />
+   </LinearLayout>
 </FrameLayout>
