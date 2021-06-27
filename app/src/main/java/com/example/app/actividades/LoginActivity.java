@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.example.app.R;
+import com.example.app.clases.InternaDB;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -36,8 +37,16 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         jbtn_salir.setOnClickListener(this);
         jlbl_registrar.setOnClickListener(this);
 
-        jtxt_correo.setText("usuario@mail.com");
-        jtxt_clave.setText("123456");
+        // validar si el usuario recordo sesión
+        // creamos la base de datos
+        InternaDB bd=new InternaDB(getApplicationContext());
+        // se verifica si recordo sesión y se extrae los datos
+        if(bd.recordo_sesion()){
+            validar_sesion(bd.buscar_campo("CORREO"),bd.buscar_campo("CLAVE"));
+        }
+
+        //jtxt_correo.setText("usuario@mail.com");
+        //jtxt_clave.setText("123456");
 
     }
     @Override
@@ -47,7 +56,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 recordar_sesion(); // metodo
                 break;
             case R.id.log_btn_ingresar:
-                validar_sesion();
+                validar_sesion(jtxt_correo.getText().toString().trim(),jtxt_clave.getText().toString().trim());
                 break;
             case R.id.log_btn_salir:
                 salir_aplicacion();
@@ -63,10 +72,15 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         String s_recordar = jchk_recordar.isChecked() ? "activado":"desactivado";
         System.out.println("Recordar sesión: "+ s_recordar);
     }
-    private void validar_sesion() {
-        String s_correo=jtxt_correo.getText().toString().trim();
-        String s_Clave=jtxt_clave.getText().toString().trim();
-        if (validar_usuario(s_correo,s_Clave)) {
+    private void validar_sesion(String s_correo,String s_clave) {
+
+        if (validar_usuario(s_correo,s_clave)) {
+            if(jchk_recordar.isChecked()){
+                // si esta marcado la opcióon recordar sesión
+                InternaDB bd= new InternaDB(getApplicationContext()); // la bd
+                bd.agregar_usuario(s_correo,s_clave); // agregando el usuario a la BD
+            }
+
             //cargamos la actividad de bienvenida
             Intent i_principal = new Intent(getApplicationContext(), PrincipalActivity.class);
             // pasar parametro por el intent para comunicar con la actividad

@@ -201,7 +201,7 @@
                 android:layout_height="wrap_content"
                 android:hint="@string/reg_txt_direccion"
                 android:inputType="text"
-                android:maxLength="9"/>
+                android:maxLength="100"/>
         </LinearLayout>
 
         <LinearLayout
@@ -220,7 +220,7 @@
                 android:layout_height="wrap_content"
                 android:hint="@string/reg_txt_clave"
                 android:inputType="textPassword"
-                android:maxLength="50"/>
+                android:maxLength="128"/>
         </LinearLayout>
 
         <LinearLayout
@@ -239,7 +239,7 @@
                 android:layout_height="wrap_content"
                 android:hint="@string/reg_txt_confirmar_clave"
                 android:inputType="textPassword"
-                android:maxLength="50"/>
+                android:maxLength="128"/>
         </LinearLayout>
 
         <CheckBox
