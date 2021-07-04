@@ -18,8 +18,15 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.app.R;
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.BaseJsonHttpResponseHandler;
+
+import org.json.JSONArray;
+import org.json.JSONException;
 
 import java.util.Calendar;
+
+import cz.msebera.android.httpclient.Header;
 
 public class RegistroActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -50,10 +57,9 @@ public class RegistroActivity extends AppCompatActivity implements View.OnClickL
         jbtn_registrar=findViewById(R.id.reg_btn_registrar);
         jbtn_cancelar=findViewById(R.id.reg_btn_cancelar);
         //llenar el spinner por código
-        jsp_distritos.setAdapter(new ArrayAdapter<String>(getApplicationContext(),
-                android.R.layout.simple_spinner_dropdown_item,
-                new String[]{"Seleccione distrito","Ancón","Bellavista","Comas"}));
 
+
+        llenar_distritos();
         // eventos onclick listener --> los botones importante
         jtxt_fecha_nac.setOnClickListener(this);
         jchk_terminos.setOnClickListener(this);
@@ -62,6 +68,51 @@ public class RegistroActivity extends AppCompatActivity implements View.OnClickL
 
 
     }
+
+    private void llenar_distritos() {
+        AsyncHttpClient ahc_distrito = new AsyncHttpClient();
+        String s_url ="http://chefsociety.atwebpages.com/webservice/distritos.php";
+
+        ahc_distrito.post(s_url, null, new BaseJsonHttpResponseHandler() {
+
+            @Override  // SI HAY RESPUESTA HACIA TU WEBSERVICE
+            // CÓDIGO ESTADO --> IDENTIFICAR LA RESPUESTA
+            public void onSuccess(int statusCode, Header[] headers, String rawJsonResponse, Object response) {
+                if(statusCode == 200){
+                    try {
+                        JSONArray jsonArray = new JSONArray(rawJsonResponse);
+                        // 43 distritos + el seleccione distrito = 44
+                        String[] s_distritos = new String[jsonArray.length()+1];
+                               s_distritos[0]= "Seleccione distrito";
+                               for(int i=1; i<= jsonArray.length();i++){
+                                   s_distritos[i] = jsonArray.getJSONObject(i-1).getString("nombre_distrito");
+                               }
+                                // pasando los datos al spinner
+                               jsp_distritos.setAdapter(new ArrayAdapter<String>(getApplicationContext(),android.R.layout.simple_spinner_dropdown_item, s_distritos));
+
+
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+                }else {
+                    Toast.makeText(getApplicationContext(),"Error code: "+ statusCode,Toast.LENGTH_LONG).show();
+                }
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, Throwable throwable, String rawJsonData, Object errorResponse) {
+              Toast.makeText(getApplicationContext(),"Error al cargar distritos",Toast.LENGTH_LONG).show();
+            }
+
+            @Override
+            protected Object parseResponse(String rawJsonData, boolean isFailure) throws Throwable {
+                return null;
+            }
+        });
+    }
+
     // IMPORTANTE EL EVENTO ONCLICK LISTENER
     @Override
     public void onClick(View v) {
